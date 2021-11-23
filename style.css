@@ -1,1 +1,36 @@
+body{
+    background-color: black;
+    margin: 0;
 
+}
+.header {
+    height: 3.75rem;
+    background-color: #de1600;
+    color: white;
+}
+.wrapper {
+    width: 70%;
+    margin-left: 15%;
+}
+
+#searchresult{
+    background-color: white;
+}
+#searchmain {
+    background-color: white;
+}
+
+h1{
+    padding-top: 0.7rem;
+    text-align: right;
+    padding-right: 1rem;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+h2 {
+    margin:1rem;
+}
+
+div{
+    background-color: white;
+}
