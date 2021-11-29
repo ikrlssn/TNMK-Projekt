@@ -1,36 +1,87 @@
-body{
-    background-color: black;
-    margin: 0;
+@charset "utf-8";
 
+body {
+	background-color: black;
+	margin: 0;
 }
 .header {
-    height: 3.75rem;
-    background-color: #de1600;
-    color: white;
+	background-color: #B00000;
+	height: 70px;
+	clear: both;
+}
+.header h3 {
+	float: right;
+	margin-right: 15%;color: white;
+}
+h3 {
+	font-family: 'Quantico', sans-serif;
+	font-size: 35px;
+	font-weight: 400;
+	margin: 7px 0 0 0;
+	transition: 0.3s;
+}
+a {
+	text-decoration: none;
+	color: white;
+}
+#logo {
+	height: 80%;
+	margin: 7px 0 0 15%;
+	transition: 0.3s;
+}
+#logo:hover {
+	opacity: 0.6;
+	transition: 0.3s;
 }
 .wrapper {
-    width: 70%;
-    margin-left: 15%;
+	width: 70%;
+	margin-left: 15%;
 }
-
-#searchresult{
-    background-color: white;
+#help {
+	background-color: black;
+	width: 15%;
+	height: 200px;
+	margin: 70px 5% 0 0;
+	float: left;
+	text-align: center;
 }
-#searchmain {
-    background-color: white;
+#legoman {
+	width: 70px;
+	padding: 10px;
 }
-
-h1{
-    padding-top: 0.7rem;
-    text-align: right;
-    padding-right: 1rem;
-    margin-block-start: 0;
-    margin-block-end: 0;
+h3:hover {
+	opacity: 0.3;
+	cursor: pointer;
 }
-h2 {
-    margin:1rem;
+#search {
+	width: 80%;
+	height: 200px;
+	background-color: white;
+	float: right;
+	margin: 70px 0 0 0;
+	text-align:  center;
 }
-
-div{
-    background-color: white;
+#searchbar {
+	width: 40%;
+	height: 30px;
+}
+#searchbar:hover {
+	border: solid;
+}
+button {
+	height: 35px;
+}
+h1 {
+	font-family: 'Rajdhani', sans-serif;
+	font-size: 55px;
+}
+#helpcontent {
+	background-color: black;
+	clear: both;
+	margin-left: 20%;
+	padding: 20px;
+	display: none;
+}
+p {
+	color: white;
 }
