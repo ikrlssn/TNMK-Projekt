@@ -1,12 +1,20 @@
 
 function showhelp() {
-	
-	var div = document.getElementById("helpcontent");
-	
-	if (div.style.display === "block"){
-		div.style.display = "none";
-	} 
+	var hlp = document.getElementById("helpcontent");
+	if (hlp.style.display === "block"){
+		hlp.style.display = "none";
+	}
 	else {
-		div.style.display = "block";
+		hlp.style.display = "block";
 	}
 }
+function showabout() {
+	var abt = document.getElementById("aboutcontent");
+	if (abt.style.display === "block"){
+		abt.style.display = "none";
+	}
+	else {
+		abt.style.display = "block";
+	}
+}
+

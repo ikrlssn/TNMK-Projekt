@@ -8,6 +8,7 @@ body {
 	background-color: #B00000;
 	height: 70px;
 	clear: both;
+	text-align: center;
 }
 .header h3 {
 	float: right;
@@ -26,7 +27,7 @@ a {
 }
 #logo {
 	height: 80%;
-	margin: 7px 0 0 15%;
+	margin-top: 7px;
 	transition: 0.3s;
 }
 #logo:hover {
@@ -36,36 +37,29 @@ a {
 .wrapper {
 	width: 70%;
 	margin-left: 15%;
-}
-#help {
-	background-color: black;
-	width: 15%;
-	height: 200px;
-	margin: 70px 5% 0 0;
-	float: left;
 	text-align: center;
 }
 #legoman {
 	width: 70px;
 	padding: 10px;
+	float: left;
 }
 h3:hover {
 	opacity: 0.3;
 	cursor: pointer;
 }
 #search {
-	width: 80%;
+	width: 100%;
 	height: 200px;
 	background-color: white;
-	float: right;
 	margin: 70px 0 0 0;
 	text-align:  center;
 }
-#searchbar {
+input {
 	width: 40%;
 	height: 30px;
 }
-#searchbar:hover {
+input:hover {
 	border: solid;
 }
 button {
@@ -74,12 +68,24 @@ button {
 h1 {
 	font-family: 'Rajdhani', sans-serif;
 	font-size: 55px;
+	padding-top: 20px;
+}
+#help {
+	float:left;
+	width:45%;
+	margin-right: 5%;
+}
+#about {
+	float:right;
+	width: 45%;
+	margin-left: 5%;
 }
 #helpcontent {
 	background-color: black;
-	clear: both;
-	margin-left: 20%;
-	padding: 20px;
+	display: none;
+}
+#aboutcontent {
+	background-color: black;
 	display: none;
 }
 p {
