@@ -18,13 +18,15 @@
 	</div>
 	<div class="wrapper">
 		<div id="help">
-			<img src="legoman.png" alt="legoman" id="legoman">
+			<img src="/img/legoman.png" alt="legoman" id="legoman">
 			<h3 onClick="showhelp()"><a>Help</a></h3>
 		</div>
 		<div id="search">
 			<h1>Lego Search</h1>
-			<input id="searchbar" type="text" autofocus placeholder="Search for LEGO sets here...">
-			<button type="submit">Search</button>
+			<form method="get">
+				<input id="searchbar" type="text" autofocus placeholder="Search for LEGO sets here...">
+				<button type="submit">Search</button>
+			</form>
 		</div>
 		<div id="helpcontent">
 			<p>According to all known laws of aviation, there is no way a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible.</p>
