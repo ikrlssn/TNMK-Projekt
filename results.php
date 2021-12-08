@@ -31,25 +31,32 @@
                 $setID = $row['SetID'];
                 $setName = $row['Setname'];
                 $year = $row['Year'];
-                /*$itemtypeID = $row['ItemtypeID'];
-                $colorID = $row['ColorID'];
+                
+                //ny fråga här
+                $queryimg = "SELECT inventory.ItemtypeID, images.has_gif 
+                    FROM inventory, images
+                    WHERE inventory.ItemID = $setID AND images.ColorID = inventory.ColorID AND images.ItemID = inventory.ItemID 
+                    AND images.ItemtypeID = inventory.ItemtypeID";
+                
+                $resultimg = mysqli_query($connection, $queryimg);
+                $rowimg = mysqli_fetch_array($resultimg);
+
+                $itemtypeID = $rowimg['ItemtypeID'];
                 $suffix = " ";
-                $check = $row['has_gif'];
+                $check = $rowimg['has_gif'];
                 if ($check > 0) {
-                    $suffix = ".gif";
+                    $suffix = "gif";
                 } 
                 else {
-                    $suffix = ".jpg";
-                }*/
+                    $suffix = "jpg";
+                }
                 
+                $imglink = "https://weber.itn.liu.se/~stegu76/img.bricklink.com/$itemtypeID/$setID.$suffix";
+
+                print("<a style='display:block' href='legosets.php?set=<?php echo $setID ?>'><div>");
+                print("<img href=$imglink><p>$setID $setName $year</p>");
                 
-                print("<div>");
-                print("<p>$setID</p>");
-                print("<p>$setName $year</p>");
-                //print("<p>$year</p>");
-                /*print("<p>$colorID</p>");
-                print("<p>$itemtypeID</p>");*/
-                print("</div>\n");
+                print("</div></a>\n");
                 
             }
            
