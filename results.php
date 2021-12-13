@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <title>Result</title>
+    <<meta charset="utf-8">
+	<title>Lego Search</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="legoscript.js"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=M+PLUS+1+Code&family=Quantico&family=Rajdhani:wght@600&display=swap" rel="stylesheet">
+	<link rel="icon" type="image/png" href="legohead.png">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
