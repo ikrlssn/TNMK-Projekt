@@ -76,7 +76,7 @@
                 $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/S$large/$setID.$suffix";
 
                 print("<a style='display:block' href='legosets.php?set=<?php echo $setID ?>'><div>");
-                print("<img src=$imglink><p>$setID $setName $year gif: $has_gif jpg: $has_jpg largegif: $has_largegif largejpg: $has_largejpg</p>");
+                print("<img src=$imglink><p>$setID $setName $year</p>");
                 
                 print("</div></a>\n");
                 
