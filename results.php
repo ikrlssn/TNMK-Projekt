@@ -54,25 +54,25 @@
                 $has_largejpg = $rowimg['has_largejpg'];
                 $large = "";
 		
-		if ($rowimg['has_largegif']){
-			$suffix = "gif";
-			$large = "L";
-		}
-		else if ($rowimg['has_largejpg']){
-			$suffix = "jpg";
-			$large = "L";
-		}
+                if ($rowimg['has_largegif']){
+                    $suffix = "gif";
+                    $large = "L";
+                }
+                else if ($rowimg['has_largejpg']){
+                    $suffix = "jpg";
+                    $large = "L";
+                }
                 else if ($rowimg['has_jpg']){
                     $suffix = "jpg";
-                    
+                            
                 }
                 else if ($rowimg['has_gif']){
-			$suffix = "gif";
-		}
-		else {
-			echo "fel";
-		}                
-                
+                    $suffix = "gif";
+                }
+                else {
+                    echo "fel";
+                }                
+                    
                 $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/S$large/$setID.$suffix";
 
                 print("<a style='display:block' href='legosets.php?set=<?php echo $setID ?>'><div>");
