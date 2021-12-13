@@ -91,3 +91,31 @@ h1 {
 p {
 	color: white;
 }
+
+@media screen and (max-width: 600px) {
+	.wrapper {
+		width: 100%;
+		margin: 0;
+	}
+	#search {
+		margin: 0;
+		height: 25rem;
+	}
+	h1 {
+		margin: 0;
+		padding-top: 8rem;
+	}
+	#searchbar {
+		width: 80%;
+	}
+	#help {
+		float: none;
+		width: 100%;
+		margin-right: 0;
+	}
+	#about {
+		float: none;
+		width: 100%;
+		margin-left: 0; 
+	}
+}
