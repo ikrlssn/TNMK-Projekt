@@ -43,15 +43,26 @@
 
                 $itemtypeID = $rowimg['ItemtypeID'];
                 $suffix = " ";
-                $check = $rowimg['has_gif'];
-                if ($check != 0) {
+                $has_gif = $rowimg['has_gif'];
+                $has_jpg = $rowimg['has_jpg'];
+                $has_largegif = $rowimg['has_largegif'];
+                $large = "";
+                if ($has_gif != 0) {
                     $suffix = "gif";
                 } 
-                else {
+                elseif ($has_jpg != 0){
                     $suffix = "jpg";
                 }
+                elseif ($has_largegif != 0){
+                    $suffix = "gif";
+                    $large = "L";
+                }
+                else {
+                    $suffix = "jpg";
+                    $large = "L";
+                }
                 
-                $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/S/$setID.$suffix";
+                $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/S$large/$setID.$suffix";
 
                 print("<a style='display:block' href='legosets.php?set=<?php echo $setID ?>'><div>");
                 print("<img src=$imglink><p>$setID $setName $year</p>");
