@@ -51,10 +51,10 @@
                     $suffix = "jpg";
                 }
                 
-                $imglink = "https://www.itn.liu.se/~stegu76/img.bricklink.com/$itemtypeID/$setID.$suffix";
+                $imglink = "http://www.itn.liu.se/~stegu76/img.bricklink.com/$itemtypeID/$setID.$suffix";
 
                 print("<a style='display:block' href='legosets.php?set=<?php echo $setID ?>'><div>");
-                print("<img href=$imglink><p>$setID $setName $year</p>");
+                print("<img src=$imglink><p>$setID $setName $year</p>");
                 
                 print("</div></a>\n");
                 
