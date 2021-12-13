@@ -33,15 +33,14 @@
                 $year = $row['Year'];
                 
                 //ny fråga här
-                $queryimg = "SELECT inventory.ItemtypeID, images.has_gif, images.has_jpg, images.has_largegif 
-                    FROM inventory, images
-                    WHERE inventory.ItemID = $setID AND images.ColorID = inventory.ColorID AND images.ItemID = inventory.ItemID 
-                    AND images.ItemtypeID = inventory.ItemtypeID";
+                $queryimg = "SELECT * 
+                    FROM images
+                    WHERE ItemID = $setID AND ItemtypeID = 'S'";
                 
                 $resultimg = mysqli_query($connection, $queryimg);
                 $rowimg = mysqli_fetch_array($resultimg);
 
-                $itemtypeID = $rowimg['ItemtypeID'];
+                //$itemtypeID = $rowimg['ItemtypeID'];
                 $suffix = " ";
                 $has_gif = $rowimg['has_gif'];
                 $has_jpg = $rowimg['has_jpg'];
@@ -50,7 +49,7 @@
                 if ($has_gif != 0) {
                     $suffix = "gif";
                 } 
-                elseif ($has_jpg != 0){
+                else if ($has_jpg != 0){
                     $suffix = "jpg";
                 }
                 elseif ($has_largegif != 0){
