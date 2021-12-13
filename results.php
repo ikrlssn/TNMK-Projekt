@@ -39,40 +39,44 @@
                 $year = $row['Year'];
                 
                 //ny fråga här
-                $queryimg = "SELECT * 
+                $queryimg = "SELECT DISTINCT * 
                     FROM images
-                    WHERE ItemID = $setID AND ItemtypeID = 'S'";
+                    WHERE ItemID = '$setID' AND ItemtypeID = 'S'";
                 
                 $resultimg = mysqli_query($connection, $queryimg);
                 $rowimg = mysqli_fetch_array($resultimg);
 
                 //$itemtypeID = $rowimg['ItemtypeID'];
-                $suffix = " ";
+                $suffix = "jpg";
                 $has_gif = $rowimg['has_gif'];
                 $has_jpg = $rowimg['has_jpg'];
                 $has_largegif = $rowimg['has_largegif'];
                 $has_largejpg = $rowimg['has_largejpg'];
                 $large = "";
-                if ($has_largegif != 0){
-                    $suffix = "gif";
-                    $large = "L";
-                }
-                else if($has_largejpg != 0) {
+		
+		if ($rowimg['has_largegif']){
+			$suffix = "gif";
+			$large = "L";
+		}
+		else if ($rowimg['has_largejpg']){
+			$suffix = "jpg";
+			$large = "L";
+		}
+                else if ($rowimg['has_jpg']){
                     $suffix = "jpg";
-                    $large = "L";
+                    
                 }
-                else if ($has_gif != 0) {
-                    $suffix = "gif";
-                } 
-                else ($has_jpg != 0){
-                    $suffix = "jpg";
-                }
-                
+                else if ($rowimg['has_gif']){
+			$suffix = "gif";
+		}
+		else {
+			echo "fel";
+		}                
                 
                 $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/S$large/$setID.$suffix";
 
                 print("<a style='display:block' href='legosets.php?set=<?php echo $setID ?>'><div>");
-                print("<img src=$imglink><p>$setID $setName $year</p>");
+                print("<img src=$imglink><p>$setID $setName $year gif: $has_gif jpg: $has_jpg largegif: $has_largegif largejpg: $has_largejpg</p>");
                 
                 print("</div></a>\n");
                 
