@@ -33,7 +33,7 @@
                 $year = $row['Year'];
                 
                 //ny fråga här
-                $queryimg = "SELECT inventory.ItemtypeID, images.has_gif 
+                $queryimg = "SELECT inventory.ItemtypeID, images.has_gif, images.has_jpg, images.has_largegif 
                     FROM inventory, images
                     WHERE inventory.ItemID = $setID AND images.ColorID = inventory.ColorID AND images.ItemID = inventory.ItemID 
                     AND images.ItemtypeID = inventory.ItemtypeID";
@@ -44,14 +44,14 @@
                 $itemtypeID = $rowimg['ItemtypeID'];
                 $suffix = " ";
                 $check = $rowimg['has_gif'];
-                if ($check > 0) {
+                if ($check != 0) {
                     $suffix = "gif";
                 } 
                 else {
                     $suffix = "jpg";
                 }
                 
-                $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/$itemtypeID/$setID.$suffix";
+                $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/S/$setID.$suffix";
 
                 print("<a style='display:block' href='legosets.php?set=<?php echo $setID ?>'><div>");
                 print("<img src=$imglink><p>$setID $setName $year</p>");
