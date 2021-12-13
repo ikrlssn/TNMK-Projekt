@@ -45,21 +45,23 @@
                 $has_gif = $rowimg['has_gif'];
                 $has_jpg = $rowimg['has_jpg'];
                 $has_largegif = $rowimg['has_largegif'];
+                $has_largejpg = $rowimg['has_largejpg'];
                 $large = "";
-                if ($has_gif != 0) {
+                if ($has_largegif != 0){
+                    $suffix = "gif";
+                    $large = "L";
+                }
+                else if($has_largejpg != 0) {
+                    $suffix = "jpg";
+                    $large = "L";
+                }
+                else if ($has_gif != 0) {
                     $suffix = "gif";
                 } 
-                else if ($has_jpg != 0){
+                else ($has_jpg != 0){
                     $suffix = "jpg";
                 }
-                elseif ($has_largegif != 0){
-                    $suffix = "gif";
-                    $large = "L";
-                }
-                else {
-                    $suffix = "jpg";
-                    $large = "L";
-                }
+                
                 
                 $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/S$large/$setID.$suffix";
 
