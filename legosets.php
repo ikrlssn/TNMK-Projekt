@@ -13,10 +13,11 @@
         <p> allt skit </p>
         <?php
         $setID = $_GET['set'];
+        $connection	= mysqli_connect("mysql.itn.liu.se", "lego", "", "lego");
 
         $query = "SELECT inventory.ItemID, inventory.Quantity, inventory.ItemtypeID, colors.Colorname 
             FROM inventory, colors
-            WHERE inventory.SetID = $setID AND colors.ColorID = inventory.ColorID";
+            WHERE inventory.SetID = '$setID' AND colors.ColorID = inventory.ColorID LIMIT 0,10";
         $result = mysqli_query($connection, $query);
         while ($row = mysqli_fetch_array($result)) {
 
@@ -25,7 +26,7 @@
             $colorname = $row['Colorname'];
             $itemtypeID = $row['ItemtypeID'];
 
-            if($itemtypeID = "P"){
+            if($itemtypeID == "P"){
                 $querypart = "SELECT parts.Partname
                     FROM parts, inventory
                     WHERE inventory.SetID = $setID AND parts.PartID = $itemID";
@@ -43,27 +44,27 @@
             }
 
 
-            $queryimg = "SELECT inventory.ColorID, images.has_gif 
+            $queryimg = "SELECT inventory.ColorID, images.has_gif, images.has_jpg 
                 FROM inventory, images
-                WHERE inventory.SetID = $setID AND images.ColorID = inventory.ColorID AND images.ItemID = inventory.ItemID 
+                WHERE inventory.SetID = '$setID' AND inventory.ItemID = '$itemID' AND images.ColorID = inventory.ColorID AND images.ItemID = inventory.ItemID 
                 AND images.ItemtypeID = inventory.ItemtypeID";
             $resultimg = mysqli_query($connection, $queryimg);
             $rowimg = mysqli_fetch_array($resultimg);
 
             $colorID = $rowimg['ColorID'];
-            $suffix = " ";
-            $check = $rowimg['has_gif'];
-            if ($check > 0) {
+            $suffix = "jpg";
+            //$check = $rowimg['has_gif'];
+            if ($rowimg['has_gif']) {
                 $suffix = "gif";
             } 
-            else {
+            else if($rowimg['has_jpg']){
                 $suffix = "jpg";
             }
-            $imglink = "https://weber.itn.liu.se/~stegu76/img.bricklink.com/$itemtypeID/$colorID/$setID.$suffix";
+            $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/$itemtypeID/$colorID/$setID.$suffix";
 
             print("<div>");
-            print("<img href=$imglink><p>");
-            if($itemtypeID = "P"){
+            print("<img href=$imglink><p>$itemID");
+            if($itemtypeID == "P"){
                 print("$partname");
             }
             else{
