@@ -23,7 +23,7 @@
                 <input type="submit" value="Search">
             </form>
         </div>
-        <div>
+        <ul id="allresults">
             <?php
             $connection	= mysqli_connect("mysql.itn.liu.se", "lego", "", "lego");
             $searchword = $_GET['search'];
@@ -76,15 +76,15 @@
                     
                 $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/S$large/$setID.$suffix";
 
-                print("<a style='display:block' action='legosets.php?set=$setID'><div>");
-                print("<img src=$imglink><p>$setID $setName $year</p>");
+                print("<li><a style='display:block' action='legosets.php?set=$setID'><div class='result'>");
+                print("<img src=$imglink><p2>$setID</p2><p>$setName <br> $year</p>");
                 
-                print("</div></a>\n");
+                print("</div></a></li>\n");
                 
             }
            
             ?>
-        </div>
+        </ul>
     </div>
     
 </body>

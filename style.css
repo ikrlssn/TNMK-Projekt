@@ -91,7 +91,53 @@ h1 {
 p {
 	color: white;
 }
-
+#re-search {
+    padding: 2rem;
+}
+#allresults {
+    list-style: none;
+}
+#allresults li {
+    width: 48%;
+    padding: 1%;
+    margin: 0;
+    float:left;
+}
+.result {
+    background-color: white;
+    clear: both;
+    height: 9rem;
+    padding: 0.5rem;
+    border: outset;
+    border-width: 0.3rem;
+}
+.result:hover {
+    opacity: 0.8;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.result p {
+    color:black;
+    font-size: 1.4em;
+    font-family: 'Rajdhani', sans-serif;
+    margin:0;
+}
+.result img {
+    height: 9rem;
+    width: 12rem;
+    float:left;
+}
+p2 {
+    color:black;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1em;
+}
+@media screen and (max-width: 81em) {
+    #allresults li {
+        float:none;
+        width: 100%;
+    }
+}
 @media screen and (max-width: 600px) {
 	.wrapper {
 		width: 100%;
@@ -118,4 +164,5 @@ p {
 		width: 100%;
 		margin-left: 0; 
 	}
+    
 }
