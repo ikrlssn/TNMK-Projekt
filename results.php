@@ -25,9 +25,10 @@
         </div>
         <div>
             <?php
+            $connection	= mysqli_connect("mysql.itn.liu.se", "lego", "", "lego");
             $searchword = mysqli_real_escape_string($_GET['search']);
 
-            $connection	= mysqli_connect("mysql.itn.liu.se", "lego", "", "lego");
+            
             $query = "SELECT sets.SetID, sets.Setname, sets.Year FROM sets 
             WHERE sets.Setname LIKE '%$searchword%' OR sets.SetID LIKE '%$searchword%'";
  

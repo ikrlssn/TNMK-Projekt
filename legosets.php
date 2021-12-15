@@ -14,6 +14,7 @@
         
         
         <?php
+        $connection	= mysqli_connect("mysql.itn.liu.se", "lego", "", "lego");
         $count = 0;
         $querycount = "SELECT inventory.ItemID 
         FROM inventory
@@ -31,7 +32,7 @@
         }
         $setID = mysqli_real_escape_string($_GET['set']);
         
-        $connection	= mysqli_connect("mysql.itn.liu.se", "lego", "", "lego");
+        
 
         $query = "SELECT inventory.ItemID, inventory.Quantity, inventory.ItemtypeID, colors.Colorname 
             FROM inventory, colors
