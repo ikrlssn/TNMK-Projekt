@@ -10,15 +10,48 @@
         <p>här kommer en meny</p>
     </div>
     <div class="wrapper">
-        <p> allt skit </p>
+        
+        
+        
         <?php
-        $setID = $_GET['set'];
+        $count = 0;
+        $querycount = "SELECT inventory.ItemID 
+        FROM inventory
+        WHERE inventory.SetID = '$setID'";
+        $resultcount = mysqli_query($connection, $query);
+        while ($rowcount = mysqli_fetch_array($resultcount)) {
+            $count += 1;
+        }
+
+        if (isset($_GET['page'])){
+            $page = mysqli_real_escape_string((int)$_GET['page']);
+        }
+        else{
+            $page = 0;
+        }
+        $setID = mysqli_real_escape_string($_GET['set']);
+        
         $connection	= mysqli_connect("mysql.itn.liu.se", "lego", "", "lego");
 
         $query = "SELECT inventory.ItemID, inventory.Quantity, inventory.ItemtypeID, colors.Colorname 
             FROM inventory, colors
-            WHERE inventory.SetID = '$setID' AND colors.ColorID = inventory.ColorID LIMIT 0,10";
+            WHERE inventory.SetID = '$setID' AND colors.ColorID = inventory.ColorID LIMIT $page,24";
         $result = mysqli_query($connection, $query);
+
+        /*if($page+24 <= $count){
+            print("<p>Showing result "$page+1" - "$page+24"</p>");
+        }
+        else{
+            print("<p>Showing result "$page+1" - "$count"</p>");
+        }*/
+        ?>
+
+        <a href='legosets.php?set=<?php echo $setID ?>&page=<?php echo $page-24 ?>'>previous </a>
+        <a href='legosets.php?set=<?php echo $setID ?>&page=<?php echo $page+24 ?>'>next</a>");
+
+        
+        
+        <?php
         while ($row = mysqli_fetch_array($result)) {
 
             $itemID = $row['ItemID'];

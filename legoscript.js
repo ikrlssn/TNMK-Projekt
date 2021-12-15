@@ -17,4 +17,3 @@ function showabout() {
 		abt.style.display = "block";
 	}
 }
-
