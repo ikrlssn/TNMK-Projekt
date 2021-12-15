@@ -43,7 +43,6 @@
                 $minifigname = $rowminifig['Minifigname'];
             }
 
-
             $queryimg = "SELECT inventory.ColorID, images.has_gif, images.has_jpg 
                 FROM inventory, images
                 WHERE inventory.SetID = '$setID' AND inventory.ItemID = '$itemID' AND images.ColorID = inventory.ColorID AND images.ItemID = inventory.ItemID 
@@ -60,14 +59,16 @@
             else if($rowimg['has_jpg']){
                 $suffix = "jpg";
             }
-            $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/$itemtypeID/$colorID/$setID.$suffix";
 
             print("<div>");
-            print("<img href=$imglink><p>$itemID");
             if($itemtypeID == "P"){
+                $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/$itemtypeID/$colorID/$itemID.$suffix";
+                print("<img src=$imglink alt='Bild finns inte'><p>$itemID ");
                 print("$partname");
             }
             else{
+                $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/$itemtypeID/$itemID.$suffix";
+                print("<img src=$imglink alt='Bild finns inte'><p>$itemID ");
                 print("$minifigname");
             }
             print(" $quantity $colorname</p>");
