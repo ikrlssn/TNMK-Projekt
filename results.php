@@ -26,7 +26,7 @@
         <div>
             <?php
             $connection	= mysqli_connect("mysql.itn.liu.se", "lego", "", "lego");
-            $searchword = mysqli_real_escape_string($_GET['search']);
+            $searchword = $_GET['search'];
 
             
             $query = "SELECT sets.SetID, sets.Setname, sets.Year FROM sets 

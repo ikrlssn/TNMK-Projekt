@@ -25,12 +25,12 @@
         }
 
         if (isset($_GET['page'])){
-            $page = mysqli_real_escape_string((int)$_GET['page']);
+            $page = (int)$_GET['page'];
         }
         else{
             $page = 0;
         }
-        $setID = mysqli_real_escape_string($_GET['set']);
+        $setID = $_GET['set'];
         
         
 
