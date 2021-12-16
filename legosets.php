@@ -23,8 +23,8 @@
         $connection	= mysqli_connect("mysql.itn.liu.se", "lego", "", "lego");
         $count = 0;
         $querycount = "SELECT inventory.ItemID 
-        FROM inventory
-        WHERE inventory.SetID = '$setID'";
+            FROM inventory
+            WHERE inventory.SetID = '$setID'";
         $resultcount = mysqli_query($connection, $query);
         while ($rowcount = mysqli_fetch_array($resultcount)) {
             $count += 1;
@@ -37,8 +37,45 @@
             $page = 0;
         }
         $setID = $_GET['set'];
+
+        $queryset = "SELECT has_gif, has_jpg, has_largegif, has_largejpg 
+            FROM images
+            WHERE ItemID = '$setID' AND ItemtypeID = 'S'";
+        $resultset = mysqli_query($connection, $queryset);
+        $rowset = mysqli_fetch_array($result);
+
+        $suffixset = "jpg";
+        $has_gifset = $rowset['has_gif'];
+        $has_jpgset = $rowset['has_jpg'];
+        $has_largegifset = $rowset['has_largegif'];
+        $has_largejpgset = $rowset['has_largejpg'];
+        $large = "";
+
+        if ($rowset['has_largegif']){
+            $suffixset = "gif";
+            $large = "L";
+        }
+        else if ($rowset['has_largejpg']){
+            $suffixset = "jpg";
+            $large = "L";
+        }
+        else if ($rowset['has_jpg']){
+            $suffixset = "jpg";
+                    
+        }
+        else if ($rowset['has_gif']){
+            $suffixset = "gif";
+        }
+        else {
+            echo "fel";
+        }                
+            
+        $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/S$large/$setID.$suffixset";
+
+        print("<li><a style='display:block' href='legosets.php?set=$setID'><div class='result'>");
+        print("<img src=$imglink><p2>$setID</p2><p>$setName <br> $year</p>");
         
-        
+        print("</div></a></li>\n");
 
         $query = "SELECT inventory.ItemID, inventory.Quantity, inventory.ItemtypeID, colors.Colorname 
             FROM inventory, colors
