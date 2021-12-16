@@ -72,7 +72,7 @@
         $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/S$large/$setID.$suffixset";
 
         print("<div id='activeset'>");
-        print("<img src=$imglink><p2>Set ID: $setID <br>Year: $year</p2><p>$setName </p>");
+        print("<img src=$imglink><p2>Set ID: $setID <br>Year: $year</p2><p>$setName Count = $count</p>");
         print("</div>\n");
 
         $limit = 24;
