@@ -90,8 +90,15 @@
         }*/
         ?>
 
-        <a href='legosets.php?set=<?php echo $setID ?>&page=<?php echo $page-24 ?>'>previous </a>
-        <a href='legosets.php?set=<?php echo $setID ?>&page=<?php echo $page+24 ?>'>next</a>
+        <a href='legosets.php?set=<?php echo $setID ?>&page=
+        <?php 
+        if($page-24>0)
+        echo $page-24 
+        
+        ?>'>previous </a>
+        <a href='legosets.php?set=<?php echo $setID ?>&page=<?php echo $page+24 
+        
+        ?>'>next</a>
 
         
         
