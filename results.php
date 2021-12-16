@@ -72,7 +72,7 @@
                 }
                 else {
                     echo "fel";
-                }                
+                }
                     
                 $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/S$large/$setID.$suffix";
 
