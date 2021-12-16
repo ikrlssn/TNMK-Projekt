@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <<meta charset="utf-8">
+    <meta charset="utf-8">
 	<title>Set Info</title>
 	<link rel="stylesheet" href="style.css">
 	<script src="legoscript.js"></script>
@@ -12,12 +12,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <div class="header">
-        <p>här kommer en meny</p>
-    </div>
+<div class="header">
+		<a href="index.php"><img src="logo.svg" alt="logo" id="logo"></a>
+	</div>
     <div class="wrapper">
-        
-        
         
         <?php
         $connection	= mysqli_connect("mysql.itn.liu.se", "lego", "", "lego");

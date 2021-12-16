@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 body {
-	background-color: black;
+	background-color: #aaa;
 	margin: 0;
 }
 .header {
@@ -9,10 +9,6 @@ body {
 	height: 7rem;
 	clear: both;
 	text-align: center;
-}
-.header h3 {
-	float: right;
-	margin-right: 15%;color: white;
 }
 h3 {
 	font-family: 'Quantico', sans-serif;
