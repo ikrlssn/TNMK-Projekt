@@ -92,9 +92,13 @@
 
         <a href='legosets.php?set=<?php echo $setID ?>&page=
         <?php 
-        if($page-24>0)
-        echo $page-24 
-        
+        if($page-24>0){
+            echo $page-24;
+        }
+        else{
+            $page = 0;
+            echo $page;
+        }
         ?>'>previous </a>
         <a href='legosets.php?set=<?php echo $setID ?>&page=<?php echo $page+24 
         
