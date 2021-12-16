@@ -73,9 +73,9 @@
             
         $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/S$large/$setID.$suffixset";
 
-        print("<li><div class='result'>");
-        print("<img src=$imglink><p2>$setID</p2><p>$setName <br> $year Count = $count</p>");
-        print("</div></li>\n");
+        print("<div id='activeset'>");
+        print("<img src=$imglink><p2>Set ID: $setID <br>Year: $year</p2><p>$setName </p>");
+        print("</div>\n");
 
         $limit = 24;
 
@@ -92,83 +92,94 @@
         }*/
         ?>
 
-        <a href='legosets.php?set=<?php echo $setID ?>&page=
-        <?php 
-        if($page-$limit>0){
-            echo $page-$limit;
-        }
-        else{
-            $page = 0;
-            echo $page;
-        }
-        ?>'>previous </a>
-        <a href='legosets.php?set=<?php echo $setID ?>&page=
-        <?php
-        if($page<$count){
-            echo $page+$limit;
-        }
-        else{
-            echo $count;
-        }
-        ?>'>next</a>
-
-        <?php
-        while ($row = mysqli_fetch_array($result)) {
-
-            $itemID = $row['ItemID'];
-            $quantity = $row['Quantity'];
-            $colorname = $row['Colorname'];
-            $itemtypeID = $row['ItemtypeID'];
-
-            if($itemtypeID == "P"){
-                $querypart = "SELECT parts.Partname
-                    FROM parts, inventory
-                    WHERE inventory.SetID = $setID AND parts.PartID = $itemID";
-                $resultpart = mysqli_query($connection, $querypart);
-                $rowpart = mysqli_fetch_array($resultpart);
-                $partname = $rowpart['Partname'];
+        <div id="pagination">
+            <a href='legosets.php?set=<?php echo $setID ?>&page=
+            <?php 
+            if($page-$limit>0){
+                echo $page-$limit;
             }
             else{
-                $queryminifig = "SELECT minifigs.Minifigname
-                    FROM minifigs
-                    WHERE minifigs.MinifigID = $itemID";
-                $resultminifig = mysqli_query($connection, $queryminifig);
-                $rowminifig = mysqli_fetch_array($resultminifig);
-                $minifigname = $rowminifig['Minifigname'];
+                $page = 0;
+                echo $page;
             }
+            ?>'>&laquo;</a>
+            <a href='legosets.php?set=<?php echo $setID ?>&page=
+            <?php
+            if($page<$count){
+                echo $page+$limit;
+            }
+            else{
+                echo $count;
+            }
+            ?>'>&raquo;</a>
+        </div>
 
-            $queryimg = "SELECT inventory.ColorID, images.has_gif, images.has_jpg 
-                FROM inventory, images
-                WHERE inventory.SetID = '$setID' AND inventory.ItemID = '$itemID' AND images.ColorID = inventory.ColorID AND images.ItemID = inventory.ItemID 
-                AND images.ItemtypeID = inventory.ItemtypeID";
-            $resultimg = mysqli_query($connection, $queryimg);
-            $rowimg = mysqli_fetch_array($resultimg);
 
-            $colorID = $rowimg['ColorID'];
-            $suffix = "jpg";
-            //$check = $rowimg['has_gif'];
-            if ($rowimg['has_gif']) {
-                $suffix = "gif";
-            } 
-            else if($rowimg['has_jpg']){
+        <table>
+            <tr>
+                <th>
+                    <!-- rubriker till tabellen -->
+                </th>
+            </tr>
+
+            <?php
+            while ($row = mysqli_fetch_array($result)) {
+
+                $itemID = $row['ItemID'];
+                $quantity = $row['Quantity'];
+                $colorname = $row['Colorname'];
+                $itemtypeID = $row['ItemtypeID'];
+
+                if($itemtypeID == "P"){
+                    $querypart = "SELECT parts.Partname
+                        FROM parts, inventory
+                        WHERE inventory.SetID = $setID AND parts.PartID = $itemID";
+                    $resultpart = mysqli_query($connection, $querypart);
+                    $rowpart = mysqli_fetch_array($resultpart);
+                    $partname = $rowpart['Partname'];
+                }
+                else{
+                    $queryminifig = "SELECT minifigs.Minifigname
+                        FROM minifigs
+                        WHERE minifigs.MinifigID = $itemID";
+                    $resultminifig = mysqli_query($connection, $queryminifig);
+                    $rowminifig = mysqli_fetch_array($resultminifig);
+                    $minifigname = $rowminifig['Minifigname'];
+                }
+
+                $queryimg = "SELECT inventory.ColorID, images.has_gif, images.has_jpg 
+                    FROM inventory, images
+                    WHERE inventory.SetID = '$setID' AND inventory.ItemID = '$itemID' AND images.ColorID = inventory.ColorID AND images.ItemID = inventory.ItemID 
+                    AND images.ItemtypeID = inventory.ItemtypeID";
+                $resultimg = mysqli_query($connection, $queryimg);
+                $rowimg = mysqli_fetch_array($resultimg);
+
+                $colorID = $rowimg['ColorID'];
                 $suffix = "jpg";
-            }
+                //$check = $rowimg['has_gif'];
+                if ($rowimg['has_gif']) {
+                    $suffix = "gif";
+                } 
+                else if($rowimg['has_jpg']){
+                    $suffix = "jpg";
+                }
 
-            print("<div>");
-            if($itemtypeID == "P"){
-                $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/$itemtypeID/$colorID/$itemID.$suffix";
-                print("<img src=$imglink alt='Bild finns inte'><p>$itemID ");
-                print("$partname");
+                print("<div>");
+                if($itemtypeID == "P"){
+                    $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/$itemtypeID/$colorID/$itemID.$suffix";
+                    print("<img src=$imglink alt='Image could not be found'><p>$itemID ");
+                    print("$partname");
+                }
+                else{
+                    $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/$itemtypeID/$itemID.$suffix";
+                    print("<img src=$imglink alt='Image could not be found'><p>$itemID ");
+                    print("$minifigname");
+                }
+                print(" $quantity $colorname</p>");
+                print("</div>\n");
             }
-            else{
-                $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/$itemtypeID/$itemID.$suffix";
-                print("<img src=$imglink alt='Bild finns inte'><p>$itemID ");
-                print("$minifigname");
-            }
-            print(" $quantity $colorname</p>");
-            print("</div>\n");
-        }
-        ?>
+            ?>
+        </table>
     </div>
 </body>
 </html>
