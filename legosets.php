@@ -38,12 +38,13 @@
         }
         $setID = $_GET['set'];
 
-        $queryset = "SELECT has_gif, has_jpg, has_largegif, has_largejpg 
-            FROM images
+        $queryset = "SELECT has_gif, has_jpg, has_largegif, has_largejpg, sets.Setname, sets.Year 
+            FROM images, sets
             WHERE ItemID = '$setID' AND ItemtypeID = 'S'";
         $resultset = mysqli_query($connection, $queryset);
-        $rowset = mysqli_fetch_array($result);
-
+        $rowset = mysqli_fetch_array($resultset);
+        $setName = $rowset['Setname'];
+        $year = $rowset['Year'];
         $suffixset = "jpg";
         $has_gifset = $rowset['has_gif'];
         $has_jpgset = $rowset['has_jpg'];
