@@ -20,15 +20,13 @@
         <?php
         $connection	= mysqli_connect("mysql.itn.liu.se", "lego", "", "lego");
         $count = 0;
-        $querycount = "SELECT inventory.ItemID 
+        $querycount = "SELECT COUNT inventory.ItemID 
             FROM inventory
             WHERE inventory.SetID = '$setID'";
         $resultcount = mysqli_query($connection, $querycount);
-        while ($rowcount = mysqli_fetch_array($resultcount)) {
-            global $count;
-            $count = $count + 1;
-            consolelog();
-        }
+        $rowcount = mysqli_fetch_array($resultcount);
+        $count = $rowcount[COUNT(ItemID)];
+        
         //$count = 69;
         if (isset($_GET['page'])){
             $page = (int)$_GET['page'];
