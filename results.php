@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <<meta charset="utf-8">
-	<title>Lego Search</title>
+	<title>Search Results</title>
 	<link rel="stylesheet" href="style.css">
 	<script src="legoscript.js"></script>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
