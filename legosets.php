@@ -72,10 +72,9 @@
             
         $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/S$large/$setID.$suffixset";
 
-        print("<li><a style='display:block' href='legosets.php?set=$setID'><div class='result'>");
+        print("<li><div class='result'>");
         print("<img src=$imglink><p2>$setID</p2><p>$setName <br> $year</p>");
-        
-        print("</div></a></li>\n");
+        print("</div></li>\n");
 
         $query = "SELECT inventory.ItemID, inventory.Quantity, inventory.ItemtypeID, colors.Colorname 
             FROM inventory, colors
@@ -91,7 +90,7 @@
         ?>
 
         <a href='legosets.php?set=<?php echo $setID ?>&page=<?php echo $page-24 ?>'>previous </a>
-        <a href='legosets.php?set=<?php echo $setID ?>&page=<?php echo $page+24 ?>'>next</a>");
+        <a href='legosets.php?set=<?php echo $setID ?>&page=<?php echo $page+24 ?>'>next</a>
 
         
         
