@@ -23,11 +23,13 @@
         $querycount = "SELECT inventory.ItemID 
             FROM inventory
             WHERE inventory.SetID = '$setID'";
-        $resultcount = mysqli_query($connection, $query);
+        $resultcount = mysqli_query($connection, $querycount);
         while ($rowcount = mysqli_fetch_array($resultcount)) {
-            $count += 1;
+            global $count;
+            $count = $count + 1;
+            consolelog();
         }
-
+        //$count = 69;
         if (isset($_GET['page'])){
             $page = (int)$_GET['page'];
         }
@@ -38,7 +40,7 @@
 
         $queryset = "SELECT has_gif, has_jpg, has_largegif, has_largejpg, sets.Setname, sets.Year 
             FROM images, sets
-            WHERE ItemID = '$setID' AND ItemtypeID = 'S'";
+            WHERE images.ItemID = '$setID' AND images.ItemtypeID = 'S' AND sets.SetID = '$setID'";
         $resultset = mysqli_query($connection, $queryset);
         $rowset = mysqli_fetch_array($resultset);
         $setName = $rowset['Setname'];
@@ -72,12 +74,14 @@
         $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/S$large/$setID.$suffixset";
 
         print("<li><div class='result'>");
-        print("<img src=$imglink><p2>$setID</p2><p>$setName <br> $year</p>");
+        print("<img src=$imglink><p2>$setID</p2><p>$setName <br> $year Count = $count</p>");
         print("</div></li>\n");
+
+        $limit = 24;
 
         $query = "SELECT inventory.ItemID, inventory.Quantity, inventory.ItemtypeID, colors.Colorname 
             FROM inventory, colors
-            WHERE inventory.SetID = '$setID' AND colors.ColorID = inventory.ColorID LIMIT $page,24";
+            WHERE inventory.SetID = '$setID' AND colors.ColorID = inventory.ColorID LIMIT $page,$limit";
         $result = mysqli_query($connection, $query);
 
         /*if($page+24 <= $count){
@@ -90,20 +94,24 @@
 
         <a href='legosets.php?set=<?php echo $setID ?>&page=
         <?php 
-        if($page-24>0){
-            echo $page-24;
+        if($page-$limit>0){
+            echo $page-$limit;
         }
         else{
             $page = 0;
             echo $page;
         }
         ?>'>previous </a>
-        <a href='legosets.php?set=<?php echo $setID ?>&page=<?php echo $page+24 
-        
+        <a href='legosets.php?set=<?php echo $setID ?>&page=
+        <?php
+        if($page<$count){
+            echo $page+$limit;
+        }
+        else{
+            echo $count;
+        }
         ?>'>next</a>
 
-        
-        
         <?php
         while ($row = mysqli_fetch_array($result)) {
 
