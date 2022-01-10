@@ -85,9 +85,9 @@ h1 {
 	display: none;
 }
 p {
-	color: white;
+	color: black;
 }
-#re-search {
+#searchagain {
     padding: 2rem;
 }
 #allresults {
@@ -108,8 +108,8 @@ p {
     border-width: 0.3rem;
 }
 .result:hover {
-    opacity: 0.8;
-    transition: 0.3s;
+    background-color: #DDD;
+    transition: 0.2s;
     cursor: pointer;
 }
 .result p {
@@ -124,21 +124,77 @@ p {
     float:left;
 }
 p2 {
-    color:black;
+    color: #777;
     font-family: 'Rajdhani', sans-serif;
-    font-size: 1em;
+    font-size: 2em;
+}
+#pagination a {
+	font-size: 2.5em;
+	padding: 0.6rem;
+}
+#pagination a:hover {
+	opacity: 0.5;
+	transition: 0.2s;
+}
+#activeset {
+	background-color: white;
+	height: 18rem;
+	padding: 1rem;
+	margin-top: 2rem;
+	border: outset;
+}
+#activeset img {
+	height: 18rem;
+	float: left;
+}
+#activeset h3:hover {
+	cursor: default;
+	opacity: 100%;
+}
+#parts {
+	text-align: center;
+	width: 80%;
+	margin-left: 10%;
+}
+#parts p {
+	color: black;
+}
+#parts th {
+	border: outset;
+	background-color: white;
+	padding: 0 2rem 0 2rem;
+}
+#parts th p {
+	font-family: 'Rajdhani', sans-serif;
+	font-size: 1.4em;
+}
+#parts td {
+	border: outset;
+	background-color: white;
+	padding: 0 2rem 0 2rem;
 }
 @media screen and (max-width: 81em) {
     #allresults li {
         float:none;
         width: 100%;
     }
-}
-@media screen and (max-width: 600px) {
+	#activeset img {
+		float: none;
+	}
+	#activeset {
+		height: auto;
+	}
+	#parts {
+		width: 100%;
+		margin: 0;
+	}
 	.wrapper {
 		width: 100%;
 		margin: 0;
 	}
+}
+@media screen and (max-width: 600px) {
+	
 	#search {
 		margin: 0;
 		height: 25rem;
@@ -162,3 +218,16 @@ p2 {
 	}
     
 }
+#invalid{
+	color: black;
+	font-size: 20px;
+	margin-top: 4%;
+}
+#show{
+	width: 50%;
+}
+
+
+
+
+

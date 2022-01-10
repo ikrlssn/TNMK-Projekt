@@ -27,12 +27,32 @@
             <?php
             $connection	= mysqli_connect("mysql.itn.liu.se", "lego", "", "lego");
             $searchword = $_GET['search'];
+            $invalid = "<div id='invalid'>No results found.<br>Please try a different searchword.</div>";
+            $valid = 1;
+            if(trim($searchword)=="" || $searchword=="" ){
+                print($invalid);
+                $valid = 0;
+            }
+            else{
+                $querycount = "SELECT COUNT(inventory.ItemID)
+                    FROM inventory, sets
+                    WHERE inventory.SetID = sets.setID AND (sets.Setname LIKE '%$searchword%' OR sets.SetID LIKE '%$searchword%')";
+                
+                $resultcount = mysqli_query($connection, $querycount);
+                $rowcount = mysqli_fetch_array($resultcount);
+                $count = $rowcount['COUNT(inventory.ItemID)'];
 
-            
-            $query = "SELECT sets.SetID, sets.Setname, sets.Year FROM sets 
-            WHERE sets.Setname LIKE '%$searchword%' OR sets.SetID LIKE '%$searchword%'";
- 
+                $query = "SELECT sets.SetID, sets.Setname, sets.Year FROM sets 
+                    WHERE sets.Setname LIKE '%$searchword%' OR sets.SetID LIKE '%$searchword%'";
+            }
             $result = mysqli_query($connection, $query);
+            if($count=="0"){
+                print($invalid);
+                $valid = 0;
+            }
+            if($valid==1){
+                print("<div id='show'>Showing results for: $searchword</div>");
+            }
             while ($row = mysqli_fetch_array($result)) {
 
                 $setID = $row['SetID'];

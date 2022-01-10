@@ -18,8 +18,9 @@
     <div class="wrapper">
         
         <?php
+        $setID = $_GET['set'];
         $connection	= mysqli_connect("mysql.itn.liu.se", "lego", "", "lego");
-        $count = 69;
+        $count = 50;
         $querycount = "SELECT COUNT(inventory.ItemID)
             FROM inventory
             WHERE inventory.SetID = '$setID'";
@@ -33,7 +34,7 @@
         else{
             $page = 0;
         }
-        $setID = $_GET['set'];
+        
 
         $queryset = "SELECT has_gif, has_jpg, has_largegif, has_largejpg, sets.Setname, sets.Year 
             FROM images, sets
@@ -71,7 +72,7 @@
         $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/S$large/$setID.$suffixset";
 
         print("<div id='activeset'>");
-        print("<img src=$imglink><p2>Set ID: $setID <br>Year: $year</p2><p>$setName Count = $count</p>");
+        print("<img src=$imglink><p2> <br>Set ID: $setID <br>Year: $year</p2><h3>$setName </h3>");
         print("</div>\n");
 
         $limit = 24;
@@ -80,15 +81,16 @@
             FROM inventory, colors
             WHERE inventory.SetID = '$setID' AND colors.ColorID = inventory.ColorID LIMIT $page,$limit";
         $result = mysqli_query($connection, $query);
-
-        /*if($page+24 <= $count){
-            print("<p>Showing result "$page+1" - "$page+24"</p>");
+        $startnr = $page+1;
+        $endnr = $page+$limit;
+        if($page+$limit <= $count){
+            print("<p>Showing result $startnr - $endnr</p>");
         }
         else{
-            print("<p>Showing result "$page+1" - "$count"</p>");
-        }*/
+            print("<p>Showing result $startnr - $count</p>");
+        }
         ?>
-
+        
         <div id="pagination">
             <a href='legosets.php?set=<?php echo $setID ?>&page=
             <?php 
@@ -96,26 +98,37 @@
                 echo $page-$limit;
             }
             else{
-                $page = 0;
-                echo $page;
+                echo 0;
             }
             ?>'>&laquo;</a>
             <a href='legosets.php?set=<?php echo $setID ?>&page=
             <?php
-            if($page<$count){
+            if($page+$limit<$count){
                 echo $page+$limit;
             }
             else{
-                echo $count;
+                echo $page;
             }
             ?>'>&raquo;</a>
         </div>
 
 
-        <table>
+        <table id="parts">
             <tr>
                 <th>
-                    <!-- rubriker till tabellen -->
+                    <p>Image</p>
+                </th>
+                <th>
+                    <p>Part ID</p>
+                </th>
+                <th>
+                    <p>Part Name</p>
+                </th>
+                <th>
+                    <p>Quantity</p>
+                </th>
+                <th>
+                    <p>Color</p>
                 </th>
             </tr>
 
@@ -161,19 +174,19 @@
                     $suffix = "jpg";
                 }
 
-                print("<div>");
+                print("<tr>");
                 if($itemtypeID == "P"){
                     $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/$itemtypeID/$colorID/$itemID.$suffix";
-                    print("<img src=$imglink alt='Image could not be found'><p>$itemID ");
-                    print("$partname");
+                    print("<td><img src=$imglink alt='Image could not be found'> </td> <td> <p>$itemID </td>");
+                    print("<td>$partname</td>");
                 }
                 else{
                     $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/$itemtypeID/$itemID.$suffix";
-                    print("<img src=$imglink alt='Image could not be found'><p>$itemID ");
-                    print("$minifigname");
+                    print("<td><img src=$imglink alt='Image could not be found'> </td> <td> <p>$itemID </td>");
+                    print("<td>$minifigname</td>");
                 }
-                print(" $quantity $colorname</p>");
-                print("</div>\n");
+                print("<td> $quantity </td> <td> $colorname</p> </td>");
+                print("</tr>\n");
             }
             ?>
         </table>
