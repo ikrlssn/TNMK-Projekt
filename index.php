@@ -14,7 +14,7 @@
 
 <body>
 	<div class="header">
-		<a href="index.html"><img src="logo.svg" alt="logo" id="logo"></a>
+		<a href="index.php"><img src="logo.svg" alt="logo" id="logo"></a>
 	</div>
 	<div class="wrapper">
 		
@@ -30,14 +30,24 @@
 			<h3 id="helpbutton" onClick="showhelp()"><a>Help</a></h3>
 			<div id="helpcontent">
 				<img src="legoman.png" alt="legoman" id="legoman">
-				<p>-According to all known laws of aviation, there is no way a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible.</p>
+				<p>
+					Search for LEGO sets, either by name, keyword or ID number. <br> 
+					Then, click one of the search results to get a better view of a set, <br> 
+					along with all its cointaining parts.<br> 
+				</p>
 			</div>
 		</div>
 			
 		<div id="about">
 			<h3 id="aboutbutton" onClick="showabout()"><a>About us</a></h3>
 			<div id="aboutcontent">
-				<p>-According to all known laws of aviation, there is no way a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible.</p>
+				<p>
+					Armen Abedi <span class="liuid">		- armab790@ad.liu.se</span> <br>
+					Oscar Fyrk <span class="liuid">			- oscfy612@ad.liu.se</span> <br>
+					Simon Henriksson <span class="liuid">	- simhe960@ad.liu.se</span> <br>
+					Isak Karlsson <span class="liuid">		- isaka326@ad.liu.se</span> <br>
+					Emil Larsgärde <span class="liuid">		- emila490@ad.liu.se</span> <br>
+				</p>
 			</div>
 		</div>
 			

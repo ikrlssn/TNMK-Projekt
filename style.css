@@ -9,6 +9,7 @@ body {
 	height: 7rem;
 	clear: both;
 	text-align: center;
+	box-shadow: 0px 15px 15px grey;
 }
 h3 {
 	font-family: 'Quantico', sans-serif;
@@ -18,6 +19,7 @@ h3 {
 	transition: 0.3s;
 }
 a {
+	font-family: 'Quantico', sans-serif;
 	text-decoration: none;
 	color: white;
 }
@@ -50,13 +52,12 @@ h3:hover {
 	background-color: white;
 	margin-top: 15rem;
 	text-align:  center;
+	border: outset;
+	border-width: 0.3rem;
 }
 input {
 	width: 40%;
 	height: 30px;
-}
-input:hover {
-	border: solid;
 }
 button {
 	height: 35px;
@@ -64,7 +65,6 @@ button {
 h1 {
 	font-family: 'Rajdhani', sans-serif;
 	font-size: 4rem;
-	padding-top: 2.5rem;
 }
 #help {
 	float:left;
@@ -77,18 +77,17 @@ h1 {
 	margin-left: 5%;
 }
 #helpcontent {
-	background-color: black;
 	display: none;
 }
 #aboutcontent {
-	background-color: black;
 	display: none;
 }
 p {
 	color: black;
+	font-family: 'Rajdhani', sans-serif;
 }
 #searchagain {
-    padding: 2rem;
+    padding: 1rem 0 0 0;
 }
 #allresults {
     list-style: none;
@@ -128,13 +127,21 @@ p2 {
     font-family: 'Rajdhani', sans-serif;
     font-size: 2em;
 }
+.showcount {
+	font-family: 'Rajdhani', sans-serif;
+	font-size: 1.25em;
+	margin: 1.5rem 0 0 0;
+}
 #pagination a {
-	font-size: 2.5em;
+	font-size: 1.5em;
 	padding: 0.6rem;
 }
 #pagination a:hover {
 	opacity: 0.5;
 	transition: 0.2s;
+}
+.arrows {
+	padding: 0.5rem;
 }
 #activeset {
 	background-color: white;
@@ -173,6 +180,7 @@ p2 {
 	background-color: white;
 	padding: 0 2rem 0 2rem;
 }
+
 @media screen and (max-width: 81em) {
     #allresults li {
         float:none;
@@ -217,14 +225,6 @@ p2 {
 		margin-left: 0; 
 	}
     
-}
-#invalid{
-	color: black;
-	font-size: 20px;
-	margin-top: 4%;
-}
-#show{
-	width: 50%;
 }
 
 

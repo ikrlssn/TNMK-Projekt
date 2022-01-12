@@ -20,13 +20,13 @@
         <?php
         $setID = $_GET['set'];
         $connection	= mysqli_connect("mysql.itn.liu.se", "lego", "", "lego");
-        $count = 50;
-        $querycount = "SELECT COUNT(inventory.ItemID)
+        //count question
+        $querycount = "SELECT COUNT(DISTINCT inventory.ItemID)
             FROM inventory
             WHERE inventory.SetID = '$setID'";
         $resultcount = mysqli_query($connection, $querycount);
         $rowcount = mysqli_fetch_array($resultcount);
-        $count = $rowcount['COUNT(inventory.ItemID)'];
+        $count = $rowcount['COUNT(DISTINCT inventory.ItemID)'];
         
         if (isset($_GET['page'])){
             $page = (int)$_GET['page'];
@@ -34,8 +34,7 @@
         else{
             $page = 0;
         }
-        
-
+        //img question for set
         $queryset = "SELECT has_gif, has_jpg, has_largegif, has_largejpg, sets.Setname, sets.Year 
             FROM images, sets
             WHERE images.ItemID = '$setID' AND images.ItemtypeID = 'S' AND sets.SetID = '$setID'";
@@ -49,7 +48,7 @@
         $has_largegifset = $rowset['has_largegif'];
         $has_largejpgset = $rowset['has_largejpg'];
         $large = "";
-
+        //build img link for set
         if ($rowset['has_largegif']){
             $suffixset = "gif";
             $large = "L";
@@ -70,24 +69,37 @@
         }                
             
         $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/S$large/$setID.$suffixset";
-
+        //print set info
         print("<div id='activeset'>");
         print("<img src=$imglink><p2> <br>Set ID: $setID <br>Year: $year</p2><h3>$setName </h3>");
         print("</div>\n");
 
+        /*$order = "";
+        ?>
+        <form action='legosets.php?set=<?php echo $setID ?>'>
+            <label for='cars'>Sort by </label>
+            <select name='sort'>
+                <option value='partID'>Part ID</option>
+                <option value='color'>Color</option>
+            </select>
+            <input type='submit'>
+        </form>
+        <?php*/
         $limit = 24;
-
-        $query = "SELECT inventory.ItemID, inventory.Quantity, inventory.ItemtypeID, colors.Colorname 
+        //pieces question
+        $query = "SELECT DISTINCT inventory.ItemID, inventory.ItemtypeID, colors.Colorname 
             FROM inventory, colors
             WHERE inventory.SetID = '$setID' AND colors.ColorID = inventory.ColorID LIMIT $page,$limit";
         $result = mysqli_query($connection, $query);
+        //pagination
         $startnr = $page+1;
         $endnr = $page+$limit;
+
         if($page+$limit <= $count){
-            print("<p>Showing result $startnr - $endnr</p>");
+            print("<p class='showcount'>Showing part $startnr - $endnr out of $count</p>");
         }
         else{
-            print("<p>Showing result $startnr - $count</p>");
+            print("<p class='showcount'>Showing part $startnr - $count out of $count</p>");
         }
         ?>
         
@@ -100,7 +112,8 @@
             else{
                 echo 0;
             }
-            ?>'>&laquo;</a>
+            ?>'><span class="arrows">&laquo;</span>Previous</a>
+
             <a href='legosets.php?set=<?php echo $setID ?>&page=
             <?php
             if($page+$limit<$count){
@@ -109,9 +122,8 @@
             else{
                 echo $page;
             }
-            ?>'>&raquo;</a>
+            ?>'>Next<span class="arrows">&raquo;</span></a>
         </div>
-
 
         <table id="parts">
             <tr>
@@ -133,13 +145,21 @@
             </tr>
 
             <?php
+            //loop pieces
             while ($row = mysqli_fetch_array($result)) {
-
+                
                 $itemID = $row['ItemID'];
-                $quantity = $row['Quantity'];
                 $colorname = $row['Colorname'];
                 $itemtypeID = $row['ItemtypeID'];
 
+                //quantity question
+                $quantquery = "SELECT Quantity
+                    FROM inventory
+                    WHERE inventory.ItemID = '$itemID' AND inventory.SetID = '$setID'";
+                $quantresult = mysqli_query($connection, $quantquery);
+                $quantrow = mysqli_fetch_array($quantresult);
+                $quantity = $quantrow['Quantity'];
+                //seperate questions for parts and minifigs
                 if($itemtypeID == "P"){
                     $querypart = "SELECT parts.Partname
                         FROM parts, inventory
@@ -156,7 +176,7 @@
                     $rowminifig = mysqli_fetch_array($resultminifig);
                     $minifigname = $rowminifig['Minifigname'];
                 }
-
+                //img question
                 $queryimg = "SELECT inventory.ColorID, images.has_gif, images.has_jpg 
                     FROM inventory, images
                     WHERE inventory.SetID = '$setID' AND inventory.ItemID = '$itemID' AND images.ColorID = inventory.ColorID AND images.ItemID = inventory.ItemID 
@@ -166,14 +186,14 @@
 
                 $colorID = $rowimg['ColorID'];
                 $suffix = "jpg";
-                //$check = $rowimg['has_gif'];
+                //build img link
                 if ($rowimg['has_gif']) {
                     $suffix = "gif";
                 } 
                 else if($rowimg['has_jpg']){
                     $suffix = "jpg";
                 }
-
+                //seperate prints for parts and minifigs
                 print("<tr>");
                 if($itemtypeID == "P"){
                     $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/$itemtypeID/$colorID/$itemID.$suffix";
