@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -11,7 +11,6 @@
 	<link rel="icon" type="image/png" href="legohead.png">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-
 <body>
 	<div class="header">
 		<a href="index.php"><img src="logo.svg" alt="logo" id="logo"></a>

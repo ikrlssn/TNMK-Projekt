@@ -34,6 +34,14 @@
         else{
             $page = 0;
         }
+
+        if (isset($_GET['sort'])){
+            $sort = $_GET['sort'];
+            $sorted = TRUE;
+        }
+        else{
+            $sorted = FALSE;
+        }
         //img question for set
         $queryset = "SELECT has_gif, has_jpg, has_largegif, has_largejpg, sets.Setname, sets.Year 
             FROM images, sets
@@ -73,23 +81,18 @@
         print("<div id='activeset'>");
         print("<img src=$imglink><p2> <br>Set ID: $setID <br>Year: $year</p2><h3>$setName </h3>");
         print("</div>\n");
-
-        /*$order = "";
         ?>
-        <form action='legosets.php?set=<?php echo $setID ?>'>
-            <label for='cars'>Sort by </label>
-            <select name='sort'>
-                <option value='partID'>Part ID</option>
-                <option value='color'>Color</option>
-            </select>
-            <input type='submit'>
-        </form>
-        <?php*/
+        
+        <?php
+        $order = "";
+        if($sorted){
+            $order = "ORDER BY ".$sort;
+        }
         $limit = 24;
         //pieces question
         $query = "SELECT DISTINCT inventory.ItemID, inventory.ItemtypeID, colors.Colorname 
             FROM inventory, colors
-            WHERE inventory.SetID = '$setID' AND colors.ColorID = inventory.ColorID LIMIT $page,$limit";
+            WHERE inventory.SetID = '$setID' AND colors.ColorID = inventory.ColorID $order LIMIT $page,$limit";
         $result = mysqli_query($connection, $query);
         //pagination
         $startnr = $page+1;
@@ -104,7 +107,7 @@
         ?>
         
         <div id="pagination">
-            <a href='legosets.php?set=<?php echo $setID ?>&page=
+            <a href='legosets.php?set=<?php echo $setID ?>&sort=<?php echo $sort ?>&page=
             <?php 
             if($page-$limit>0){
                 echo $page-$limit;
@@ -114,7 +117,15 @@
             }
             ?>'><span class="arrows">&laquo;</span>Previous</a>
 
-            <a href='legosets.php?set=<?php echo $setID ?>&page=
+            <div class="dropdown">
+                <button onclick="showsort()" class="dropbtn">Sort by&#9663;</button>
+                <div id="sortlist" class="dropdown-content">
+                    <a href="legosets.php?set=<?php echo $setID ?>&sort=ItemID">PartID</a>
+                    <a href="legosets.php?set=<?php echo $setID ?>&sort=Colorname">Color</a>
+                </div>
+            </div>
+
+            <a href='legosets.php?set=<?php echo $setID ?>&sort=<?php echo $sort ?>&page=
             <?php
             if($page+$limit<$count){
                 echo $page+$limit;
@@ -123,6 +134,8 @@
                 echo $page;
             }
             ?>'>Next<span class="arrows">&raquo;</span></a>
+
+            
         </div>
 
         <table id="parts">
@@ -143,15 +156,12 @@
                     <p>Color</p>
                 </th>
             </tr>
-
             <?php
             //loop pieces
             while ($row = mysqli_fetch_array($result)) {
-                
                 $itemID = $row['ItemID'];
                 $colorname = $row['Colorname'];
                 $itemtypeID = $row['ItemtypeID'];
-
                 //quantity question
                 $quantquery = "SELECT Quantity
                     FROM inventory
@@ -170,8 +180,8 @@
                 }
                 else{
                     $queryminifig = "SELECT minifigs.Minifigname
-                        FROM minifigs
-                        WHERE minifigs.MinifigID = $itemID";
+                        FROM parts, minifigs
+                        WHERE inventory.SetID = $setID AND minifigs.MinifigID = $itemID";
                     $resultminifig = mysqli_query($connection, $queryminifig);
                     $rowminifig = mysqli_fetch_array($resultminifig);
                     $minifigname = $rowminifig['Minifigname'];
@@ -183,7 +193,6 @@
                     AND images.ItemtypeID = inventory.ItemtypeID";
                 $resultimg = mysqli_query($connection, $queryimg);
                 $rowimg = mysqli_fetch_array($resultimg);
-
                 $colorID = $rowimg['ColorID'];
                 $suffix = "jpg";
                 //build img link
