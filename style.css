@@ -91,6 +91,7 @@ p {
 }
 #allresults {
     list-style: none;
+    padding: 0;
 }
 #allresults li {
     width: 48%;
@@ -108,14 +109,14 @@ p {
 }
 .result:hover {
     background-color: #DDD;
-    transition: 0.2s;
+    transition: 0.05s;
     cursor: pointer;
 }
 .result p {
     color:black;
     font-size: 1.4em;
     font-family: 'Rajdhani', sans-serif;
-    margin:0;
+    margin: 0;
 }
 .result img {
     height: 9rem;
@@ -196,25 +197,10 @@ p2 {
 		width: 100%;
 		margin: 0;
 	}
-	.wrapper {
-		width: 100%;
-		margin: 0;
-	}
-}
-@media screen and (max-width: 600px) {
 	
-	#search {
-		margin: 0;
-		height: 25rem;
-	}
-	h1 {
-		margin: 0;
-		padding-top: 8rem;
-	}
-	#searchbar {
-		width: 80%;
-	}
-	#help {
+}
+@media screen and (max-width: 850px) {
+    #help {
 		float: none;
 		width: 100%;
 		margin-right: 0;
@@ -224,6 +210,35 @@ p2 {
 		width: 100%;
 		margin-left: 0; 
 	}
+    #search {
+        margin-top: 10rem;
+    }
+
+}
+@media screen and (max-width: 600px) {
+	
+    .wrapper {
+		width: 100%;
+		margin: 0;
+	}
+	#search {
+		margin-top: 5rem;
+		height: 25rem;
+	}
+	h1 {
+		margin: 0;
+		padding-top: 8rem;
+	}
+	#searchbar {
+		width: 80%;
+	}
+	
+    form {
+        margin-top: 1rem;
+    }
+    .result p {
+        font-size: 1.2em;
+    }
     
 }
 
