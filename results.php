@@ -135,7 +135,7 @@
                 }
                 $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/S$large/$setID.$suffix";
                 //print info
-                print("<li><a style='display:block' href='legosets.php?set=$setID'><div class='result'>");
+                print("<li><a style='display:block' href='setinfo.php?set=$setID'><div class='result'>");
                 print("<img src=$imglink><p2>$setID</p2><p>$setName <br>Year: $year</p>");
                 print("</div></a></li>\n");
             }

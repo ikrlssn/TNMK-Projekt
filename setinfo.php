@@ -103,7 +103,7 @@
         ?>
         <div id="pagination">
             <!-- link to previous results -->
-            <a href='legosets.php?set=<?php 
+            <a href='setinfo.php?set=<?php 
             echo $setID;
             if($sorted){
                 print("&sort=");
@@ -121,12 +121,12 @@
             <div class="dropdown">
                 <button onclick="showsort()" class="dropbtn">Sort by&#9663;</button>
                 <div id="sortlist" class="dropdown-content">
-                    <a href="legosets.php?set=<?php echo $setID ?>&sort=ItemID">PartID</a>
-                    <a href="legosets.php?set=<?php echo $setID ?>&sort=Colorname">Color</a>
+                    <a href="setinfo.php?set=<?php echo $setID ?>&sort=ItemID">PartID</a>
+                    <a href="setinfo.php?set=<?php echo $setID ?>&sort=Colorname">Color</a>
                 </div>
             </div>
             <!-- link to next results -->
-            <a href='legosets.php?set=<?php 
+            <a href='setinfo.php?set=<?php 
             echo $setID; 
             if($sorted){
                 print("&sort=");
