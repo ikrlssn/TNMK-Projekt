@@ -16,7 +16,7 @@
 		<a href="index.php"><img src="logo.svg" alt="logo" id="logo"></a>
 	</div>
 	<div class="wrapper">
-		
+		<!-- searchbar sending searchword to results -->
 		<div id="search">
 			<h1>Lego Search</h1>
 			<form method="get" action="results.php">
@@ -24,7 +24,7 @@
 				<button type="submit">Search</button>
 			</form>
 		</div>
-		
+		<!-- short help, using js -->
 		<div id="help">
 			<h3 id="helpbutton" onClick="showhelp()"><a>Help</a></h3>
 			<div id="helpcontent">
@@ -36,7 +36,7 @@
 				</p>
 			</div>
 		</div>
-			
+		<!-- about us, using js -->
 		<div id="about">
 			<h3 id="aboutbutton" onClick="showabout()"><a>About us</a></h3>
 			<div id="aboutcontent">

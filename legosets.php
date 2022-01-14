@@ -16,8 +16,8 @@
 		<a href="index.php"><img src="logo.svg" alt="logo" id="logo"></a>
 	</div>
     <div class="wrapper">
-        
         <?php
+        //defining variables and sql-connection
         $setID = $_GET['set'];
         $connection	= mysqli_connect("mysql.itn.liu.se", "lego", "", "lego");
         //count question
@@ -27,14 +27,13 @@
         $resultcount = mysqli_query($connection, $querycount);
         $rowcount = mysqli_fetch_array($resultcount);
         $count = $rowcount['COUNT(DISTINCT inventory.ItemID)'];
-        
+        //get page and sort
         if (isset($_GET['page'])){
             $page = (int)$_GET['page'];
         }
         else{
             $page = 0;
         }
-
         if (isset($_GET['sort'])){
             $sort = $_GET['sort'];
             $sorted = TRUE;
@@ -42,7 +41,7 @@
         else{
             $sorted = FALSE;
         }
-        //img question for set
+        //img question for set and assigning variables
         $queryset = "SELECT has_gif, has_jpg, has_largegif, has_largejpg, sets.Setname, sets.Year 
             FROM images, sets
             WHERE images.ItemID = '$setID' AND images.ItemtypeID = 'S' AND sets.SetID = '$setID'";
@@ -75,15 +74,12 @@
         else {
             echo "fel";
         }                
-            
         $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/S$large/$setID.$suffixset";
         //print set info
         print("<div id='activeset'>");
         print("<img src=$imglink><p2> <br>Set ID: $setID <br>Year: $year</p2><h3>$setName </h3>");
         print("</div>\n");
-        ?>
-        
-        <?php
+        //build sql order by if sort was defined
         $order = "";
         if($sorted){
             $order = "ORDER BY ".$sort;
@@ -97,7 +93,7 @@
         //pagination
         $startnr = $page+1;
         $endnr = $page+$limit;
-
+        //print which pieces are shown
         if($page+$limit <= $count){
             print("<p class='showcount'>Showing part $startnr - $endnr out of $count</p>");
         }
@@ -105,9 +101,14 @@
             print("<p class='showcount'>Showing part $startnr - $count out of $count</p>");
         }
         ?>
-        
         <div id="pagination">
-            <a href='legosets.php?set=<?php echo $setID ?>&sort=<?php echo $sort ?>&page=
+            <!-- link to previous results -->
+            <a href='legosets.php?set=<?php 
+            echo $setID;
+            if($sorted){
+                print("&sort=");
+                echo $sort; 
+            }?>&page=
             <?php 
             if($page-$limit>0){
                 echo $page-$limit;
@@ -116,7 +117,7 @@
                 echo 0;
             }
             ?>'><span class="arrows">&laquo;</span>Previous</a>
-
+            <!-- menu for sorting -->
             <div class="dropdown">
                 <button onclick="showsort()" class="dropbtn">Sort by&#9663;</button>
                 <div id="sortlist" class="dropdown-content">
@@ -124,8 +125,13 @@
                     <a href="legosets.php?set=<?php echo $setID ?>&sort=Colorname">Color</a>
                 </div>
             </div>
-
-            <a href='legosets.php?set=<?php echo $setID ?>&sort=<?php echo $sort ?>&page=
+            <!-- link to next results -->
+            <a href='legosets.php?set=<?php 
+            echo $setID; 
+            if($sorted){
+                print("&sort=");
+                echo $sort; 
+            }?>&page=
             <?php
             if($page+$limit<$count){
                 echo $page+$limit;
@@ -133,11 +139,9 @@
             else{
                 echo $page;
             }
-            ?>'>Next<span class="arrows">&raquo;</span></a>
-
-            
+            ?>'>Next<span class="arrows">&raquo;</span></a> 
         </div>
-
+        <!-- table for outputting pieces -->
         <table id="parts">
             <tr>
                 <th>
