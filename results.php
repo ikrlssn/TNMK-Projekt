@@ -39,7 +39,7 @@
                 $page = 0;
             }
             //check bad search
-            if(trim($searchword)=="" || $searchword=="" ){
+            if(trim($searchword)==""){
                 $valid = FALSE;
             }
             else{
