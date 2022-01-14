@@ -30,9 +30,9 @@
 			<div id="helpcontent">
 				<img src="legoman.png" alt="legoman" id="legoman">
 				<p>
-					Search for LEGO sets, either by name, keyword or ID number. <br> 
-					Then, click one of the search results to get a better view of a set, <br> 
-					along with all its cointaining parts.<br> 
+					Search for LEGO sets, either by name, keyword or ID number. 
+					Then, click one of the search results to get a better view of a set, 
+					along with all its cointaining parts.
 				</p>
 			</div>
 		</div>

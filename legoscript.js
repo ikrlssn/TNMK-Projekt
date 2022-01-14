@@ -23,7 +23,7 @@ function showsort() {
 	document.getElementById("sortlist").classList.toggle("show");
 }
 //close the dropdown menu if the user clicks outside of it
-//copied code from w3school
+//copied code from w3schools
 window.onclick = function(event) {
 	if (!event.target.matches('.dropbtn')) {
 	  var dropdowns = document.getElementsByClassName("dropdown-content");
