@@ -210,12 +210,12 @@
                 print("<tr>");
                 if($itemtypeID == "P"){
                     $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/$itemtypeID/$colorID/$itemID.$suffix";
-                    print("<td><img src=$imglink alt='Image could not be found'> </td> <td> <p>$itemID</p> </td>");
+                    print("<td><img src=$imglink alt='Image not found'> </td> <td> <p>$itemID</p> </td>");
                     print("<td><p>$partname</p></td>");
                 }
                 else{
                     $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/$itemtypeID/$itemID.$suffix";
-                    print("<td><img src=$imglink alt='Image could not be found'> </td> <td> <p>$itemID</p> </td>");
+                    print("<td><img src=$imglink alt='Image not found'> </td> <td> <p>$itemID</p> </td>");
                     print("<td><p>$minifigname</p></td>");
                 }
                 print("<td> <p>$quantity</p> </td> <td> <p>$colorname</p> </td>");

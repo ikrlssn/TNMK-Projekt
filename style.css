@@ -74,7 +74,7 @@ button {
 	margin-top: 15rem;
 	text-align:  center;
 	border: outset;
-	border-width: 0.3rem;
+	border-width: 0.4rem;
 }
 #help {
 	float:left;
@@ -111,10 +111,10 @@ button {
 .result {
     background-color: white;
     clear: both;
-    height: 9rem;
+    min-height: 9rem;
     padding: 0.5rem;
     border: outset;
-    border-width: 0.3rem;
+    border-width: 0.4rem;
 }
 .result:hover {
     background-color: #DDD;
@@ -203,6 +203,7 @@ p2 {
 	padding: 1rem;
 	margin-top: 2rem;
 	border: outset;
+	border-width: 0.4rem;
 }
 #activeset img {
 	height: 18rem;
@@ -253,9 +254,29 @@ p2 {
 		width: 100%;
 		margin: 0;
 	}
+	.wrapper {
+		width: 80%;
+		margin-left: 10%;
+	}
 	
 }
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 62.5em) {
+	#parts th {
+		padding: 0;
+		border: none;
+	}
+	#parts th p {
+		font-size: 1.2em;
+	}
+	#parts td {
+		padding: 0;
+		border: none;
+	}
+	#parts td p {
+		font-size: 1em;
+	}
+}
+@media screen and (max-width: 53em) {
     #help {
 		float: none;
 		width: 100%;
@@ -271,15 +292,20 @@ p2 {
     }
 
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 37.5em) {
 	
     .wrapper {
 		width: 100%;
 		margin: 0;
 	}
 	#search {
-		margin-top: 5rem;
+		margin-top: 2.5rem;
 		height: 25rem;
+		border-width: 0.4rem 0 0.4rem 0;
+	}
+	#help p {
+		margin-right: 8%;
+		margin-left: 30%;
 	}
 	h1 {
 		margin: 0;
@@ -288,17 +314,32 @@ p2 {
 	#searchbar {
 		width: 80%;
 	}
-	
     form {
-        margin-top: 1rem;
+        margin-top: 0;
     }
     .result p {
         font-size: 1.2em;
     }
-    
+	#allresults li {
+		padding: 0 0 0.5rem 0;
+	}
+	#activeset img {
+		width: 100%;
+		max-height: 20rem;
+	}
+	#pagination {
+		padding: 0.5rem 0 0.5rem 0;
+	}
+	#pagination a {
+		font-size: 1.2em;
+		padding: 0 0.6rem 0 0.6rem;
+	}
+	.dropbtn {
+		font-size: 1.2em;
+	}
 }
 
-
+/*    :)     */
 
 
 
