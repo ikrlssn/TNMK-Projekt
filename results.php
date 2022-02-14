@@ -14,7 +14,7 @@
 <body>
     <!-- header and searchbar -->
     <div class="header">
-		<a href="index.php"><img src="logo.svg" alt="logo" id="logo"></a>
+		<a href="index.html"><img src="logo.svg" alt="logo" id="logo"></a>
 	</div>
     <div class="wrapper">
         <div id="searchresult">
