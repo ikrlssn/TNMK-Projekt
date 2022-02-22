@@ -23,7 +23,7 @@
                 <button type="submit" value="Search">Search</button>
             </form>
         </div>
-        <ul id="allresults">
+        
             <?php
             //defining variables and sql-connection
             $connection	= mysqli_connect("mysql.itn.liu.se", "lego", "", "lego");
@@ -33,7 +33,7 @@
             $limit = 24;
             //get page
             if (isset($_GET['page'])){
-                $page = (int)$_GET['page'];
+                $page = $_GET['page'];
             }
             else{
                 $page = 0;
@@ -72,8 +72,7 @@
                 ?>
                 <div id="pagination">
                     <!-- link to previous results -->
-                    <a href='results.php?search=<?php echo $searchword ?>&page=
-                    <?php 
+                    <a href='results.php?search=<?php echo $searchword ?>&page=<?php 
                     if($page-$limit>0){
                         echo $page-$limit;
                     }
@@ -82,8 +81,7 @@
                     }
                     ?>'><span class="arrows">&laquo;</span>Previous</a>
                     <!-- link to next results -->
-                    <a href='results.php?search=<?php echo $searchword ?>&page=
-                    <?php
+                    <a href='results.php?search=<?php echo $searchword ?>&page=<?php
                     if($page+$limit<$count){
                         echo $page+$limit;
                     }
@@ -92,6 +90,7 @@
                     }
                     ?>'>Next<span class="arrows">&raquo;</span></a>
                 </div>
+		<ul id="allresults">
                 <?php
             }
             //print error message
@@ -99,6 +98,7 @@
                 print($invalid);
             }
             //print all results
+
             while ($row = mysqli_fetch_array($result)) {
                 $setID = $row['SetID'];
                 $setName = $row['Setname'];
@@ -136,7 +136,7 @@
                 $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/S$large/$setID.$suffix";
                 //print info
                 print("<li><a style='display:block' href='setinfo.php?set=$setID'><div class='result'>");
-                print("<img src=$imglink alt='no image found'><p2>$setID</p2><p>$setName <br>Year: $year</p>");
+                print("<img src=$imglink alt='no image found'><p class='p2'>$setID</p><p>$setName <br>Year: $year</p>");
                 print("</div></a></li>\n");
             }
             ?>
