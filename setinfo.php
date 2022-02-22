@@ -29,7 +29,7 @@
         $count = $rowcount['COUNT(DISTINCT inventory.ItemID)'];
         //get page and sort
         if (isset($_GET['page'])){
-            $page = (int)$_GET['page'];
+            $page = $_GET['page'];
         }
         else{
             $page = 0;
@@ -77,7 +77,7 @@
         $imglink = "http://weber.itn.liu.se/~stegu76/img.bricklink.com/S$large/$setID.$suffixset";
         //print set info
         print("<div id='activeset'>");
-        print("<img src=$imglink><p2> <br>Set ID: $setID <br>Year: $year</p2><h3>$setName </h3>");
+        print("<img src=$imglink alt='no image found'><p class='p2'> <br>Set ID: $setID <br>Year: $year</p><h3>$setName </h3>");
         print("</div>\n");
         //build sql order by if sort was defined
         $order = "";
@@ -108,8 +108,7 @@
             if($sorted){
                 print("&sort=");
                 echo $sort; 
-            }?>&page=
-            <?php 
+            }?>&page=<?php 
             if($page-$limit>0){
                 echo $page-$limit;
             }
@@ -131,8 +130,7 @@
             if($sorted){
                 print("&sort=");
                 echo $sort; 
-            }?>&page=
-            <?php
+            }?>&page=<?php
             if($page+$limit<$count){
                 echo $page+$limit;
             }
